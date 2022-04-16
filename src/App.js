@@ -1,22 +1,50 @@
-import logo from './logo.svg'
+import { useEffect } from 'react'
+
+import Logo from './Logo.js'
 import styles from './App.module.scss'
 
-function App() {
+const App = () => {
+    // useEffect(() => {
+    //     const color = getComputedStyle(
+    //         document.documentElement,
+    //     ).getPropertyValue('--logo-color')
+
+    //     console.log(color)
+    // }, [])
+
+    const setColor = newColor => {
+        document.documentElement.style.setProperty('--logo-color', newColor)
+    }
+
+    const handleOnSizeChange = e => {
+        document.documentElement.style.setProperty(
+            '--logo-size',
+            `${e.currentTarget.value}vmin`,
+        )
+    }
+
     return (
         <div className={styles.app}>
             <header>
-                <img src={logo} className={styles.logo} alt="logo" />
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
+                <Logo className={styles.logo} />
             </header>
+            <div>
+                <button onClick={() => setColor('orange')}>orange</button>
+                <button onClick={() => setColor('blueviolet')}>
+                    blueviolet
+                </button>
+                <button onClick={() => setColor('red')}>red</button>
+            </div>
+            <div>
+                <input
+                    name="size"
+                    min="0"
+                    max="100"
+                    type="range"
+                    defaultValue="40"
+                    onChange={handleOnSizeChange}
+                />
+            </div>
         </div>
     )
 }
