@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 
 import Logo from './Logo.js'
 import styles from './App.module.scss'
