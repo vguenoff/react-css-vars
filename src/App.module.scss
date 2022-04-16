@@ -4,7 +4,6 @@
     .logo {
         height: 40vmin;
         pointer-events: none;
-
         animation: logo-spin infinite 120s linear;
 
         @keyframes logo-spin {
@@ -28,7 +27,7 @@
         color: white;
     }
 
-    .link {
+    a {
         color: #61dafb;
     }
 }
