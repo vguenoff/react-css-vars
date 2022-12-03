@@ -1,52 +1,34 @@
-// import { useEffect } from 'react'
+import { useState } from 'react'
 
 import Logo from './Logo.js'
 import styles from './App.module.scss'
 
 const App = () => {
-    // useEffect(() => {
-    //     const color = getComputedStyle(
-    //         document.documentElement,
-    //     ).getPropertyValue('--logo-color')
+  const [color, setColor] = useState('orange')
+  const [logoSize, setLogoSize] = useState('40vmin')
 
-    //     console.log(color)
-    // }, [])
-
-    const setColor = newColor => {
-        document.documentElement.style.setProperty('--logo-color', newColor)
-    }
-
-    const handleOnSizeChange = e => {
-        document.documentElement.style.setProperty(
-            '--logo-size',
-            `${e.currentTarget.value}vmin`,
-        )
-    }
-
-    return (
-        <div className={styles.app}>
-            <header>
-                <Logo className={styles.logo} />
-            </header>
-            <div>
-                <button onClick={() => setColor('orange')}>orange</button>
-                <button onClick={() => setColor('blueviolet')}>
-                    blueviolet
-                </button>
-                <button onClick={() => setColor('red')}>red</button>
-            </div>
-            <div>
-                <input
-                    name="size"
-                    min="0"
-                    max="100"
-                    type="range"
-                    defaultValue="40"
-                    onChange={handleOnSizeChange}
-                />
-            </div>
-        </div>
-    )
+  return (
+    <div className={styles.app}>
+      <header>
+        <Logo className={styles.logo} style={{ '--logo-color': color, '--logo-size': logoSize }} />
+      </header>
+      <div>
+        <button onClick={() => setColor('orange')}>orange</button>
+        <button onClick={() => setColor('blueviolet')}>blueviolet</button>
+        <button onClick={() => setColor('red')}>red</button>
+      </div>
+      <div>
+        <input
+          name="size"
+          min="0"
+          max="100"
+          type="range"
+          defaultValue="40"
+          onChange={e => setLogoSize(`${e.currentTarget.value}vmin`)}
+        />
+      </div>
+    </div>
+  )
 }
 
 export default App
